@@ -34,7 +34,6 @@ function toggleDestination() {
 
   for (const radio of radios) {
     radio.addEventListener("change", () => {
-      console.log(destinationDiv);
       if (radio.checked && radio.value === "habitation") {
         destinationDiv.disabled = false;
       } else if (radio.checked) {
@@ -46,3 +45,30 @@ function toggleDestination() {
 }
 
 window.addEventListener("DOMContentLoaded", toggleDestination);
+
+document.getElementById("form-devis").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData.entries());
+
+  console.log(data);
+
+  fetch("http://127.0.0.1:5000/api/devis", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((result) => {
+      console.log("Réponse de l'API :", result);
+      alert("Devis envoyé avec succès !");
+    })
+    .catch((err) => {
+      console.error(err);
+      alert("Erreur lors de l'envoi du formulaire.");
+      if (!res.ok) throw new Error("Erreur lors de l'envoi");
+      return res.json();
+    });
+});
