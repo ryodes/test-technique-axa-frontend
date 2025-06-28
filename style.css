@@ -100,9 +100,13 @@ form .radio-group {
 }
 
 .form-group label {
-    min-width: 100px;
+  min-width: 100px;
   display: block;
   margin-bottom: 0.25rem;
+}
+
+input:disabled {
+    background-color:#e4e4e4;
 }
 
 a {

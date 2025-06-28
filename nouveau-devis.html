@@ -127,18 +127,16 @@
           </div>
           <br /><br />
 
-          <div class="radio-group">
+          <div class="form-row">
             <label>Taux seul</label>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Tarif TRC* :</label>
-                <input type="number" name="tarifTRC" required />
-              </div>
+            <div class="form-group" style="display: flex">
+              <label>Tarif TRC* :</label>
+              <input type="number" step="0.1" name="tarifTRC" required />
+            </div>
 
-              <div class="form-group">
-                <label>Tarif DO* :</label>
-                <input type="number" name="tarifDO" required />
-              </div>
+            <div class="form-group" style="display: flex">
+              <label>Tarif DO* :</label>
+              <input type="number" step="0.1" name="tarifDO" required />
             </div>
           </div>
           <label>Adresse du chantier* :</label><br />
