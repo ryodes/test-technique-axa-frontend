@@ -4,17 +4,20 @@ const opportunites = [
   { numero: "003", client: "Initech", tarif: "1 500 €" },
 ];
 
-function afficherTableau() {
+async function afficherTableau() {
   const tbody = document.getElementById("table-body");
   tbody.innerHTML = ""; // Nettoyage au cas où
 
-  opportunites.forEach((opp) => {
+  const reponse = await fetch("http://127.0.0.1:5000/api/devis");
+  const devis = await reponse.json();
+
+  devis.forEach((opp) => {
     const ligne = document.createElement("tr");
 
     ligne.innerHTML = `
-      <td>${opp.numero}</td>
-      <td>${opp.client}</td>
-      <td>${opp.tarif}</td>
+      <td>${opp.numero_opportunite}</td>
+      <td>${opp.nom_client}</td>
+      <td>${opp.cout_ouvrage}</td>
       <td>
         📄 <span class="icon-pdf">PDF</span> | 📝 <span class="icon-word">Word</span>
       </td>
@@ -52,8 +55,6 @@ document.getElementById("form-devis").addEventListener("submit", function (e) {
   const formData = new FormData(this);
   const data = Object.fromEntries(formData.entries());
 
-  console.log(data);
-
   fetch("http://127.0.0.1:5000/api/devis", {
     method: "POST",
     headers: {
@@ -63,6 +64,7 @@ document.getElementById("form-devis").addEventListener("submit", function (e) {
   })
     .then((result) => {
       console.log("Réponse de l'API :", result);
+      document.location.href = "/index.html";
       alert("Devis envoyé avec succès !");
     })
     .catch((err) => {
