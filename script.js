@@ -80,7 +80,7 @@ document.getElementById("form-devis").addEventListener("submit", function (e) {
   })
     .then((result) => {
       console.log("Réponse de l'API :", result);
-      document.location.href = "/index.html";
+      document.location.href = "https://ryodes.github.io/test-technique-axa-frontend/";
       alert("Devis envoyé avec succès !");
     })
     .catch((err) => {
