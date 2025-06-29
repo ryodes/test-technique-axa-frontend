@@ -31,7 +31,10 @@ async function afficherTableau() {
       <td>
         <a href="http://127.0.0.1:5000/api/devis/${opp.id}/pdf" target="_blank">
           <i class="fa-solid fa-file-pdf"></i> PDF
-        </a> | 📝 <span class="icon-word">Word</span>
+        </a> | 
+        <a href="http://127.0.0.1:5000/api/devis/${opp.id}/word" target="_blank">
+          <i class="fa-solid fa-file-word"></i> W
+        </a>
       </td>
       `;
 
