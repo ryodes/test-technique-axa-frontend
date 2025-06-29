@@ -1,9 +1,3 @@
-const opportunites = [
-  { numero: "001", client: "Acme Corp", tarif: "1 200 €" },
-  { numero: "002", client: "Globex", tarif: "980 €" },
-  { numero: "003", client: "Initech", tarif: "1 500 €" },
-];
-
 async function afficherTableau() {
   const tbody = document.getElementById("table-body");
   tbody.innerHTML = ""; // Nettoyage au cas où
@@ -11,20 +5,37 @@ async function afficherTableau() {
   const reponse = await fetch("http://127.0.0.1:5000/api/devis");
   const devis = await reponse.json();
 
-  devis.forEach((opp) => {
+  if (!devis.length) {
     const ligne = document.createElement("tr");
-
     ligne.innerHTML = `
+      <td colspan="4" style="text-align: center">
+        <div style="display: flex; align-content: center; flex-wrap: wrap; flex-direction: column;">
+          <img
+            class="fit-picture"
+            src="empty-data.png"
+            alt="data empty"
+          />
+          Aucun devis établis
+        </div>
+      </td>
+      `;
+
+    tbody.appendChild(ligne);
+  } else {
+    devis.forEach((opp) => {
+      const ligne = document.createElement("tr");
+      ligne.innerHTML = `
       <td>${opp.numero_opportunite}</td>
       <td>${opp.nom_client}</td>
       <td>${opp.cout_ouvrage}</td>
       <td>
-        📄 <span class="icon-pdf">PDF</span> | 📝 <span class="icon-word">Word</span>
+      📄 <span class="icon-pdf">PDF</span> | 📝 <span class="icon-word">Word</span>
       </td>
-    `;
+      `;
 
-    tbody.appendChild(ligne);
-  });
+      tbody.appendChild(ligne);
+    });
+  }
 }
 
 // Exécution au chargement
