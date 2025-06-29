@@ -2,7 +2,7 @@ async function afficherTableau() {
   const tbody = document.getElementById("table-body");
   tbody.innerHTML = ""; // Nettoyage au cas où
 
-  const reponse = await fetch("http://127.0.0.1:5000/api/devis");
+  const reponse = await fetch("https://test-technique-axa-api.onrender.com/api/devis");
   const devis = await reponse.json();
 
   if (!devis.length) {
@@ -29,10 +29,10 @@ async function afficherTableau() {
       <td>${opp.nom_client}</td>
       <td>${opp.cout_ouvrage}</td>
       <td>
-        <a href="http://127.0.0.1:5000/api/devis/${opp.id}/pdf" target="_blank">
+        <a href="https://test-technique-axa-api.onrender.com/api/devis/${opp.id}/pdf" target="_blank">
           <i class="fa-solid fa-file-pdf"></i> PDF
         </a> | 
-        <a href="http://127.0.0.1:5000/api/devis/${opp.id}/word" target="_blank">
+        <a href="https://test-technique-axa-api.onrender.com/api/devis/${opp.id}/word" target="_blank">
           <i class="fa-solid fa-file-word"></i> W
         </a>
       </td>
@@ -71,7 +71,7 @@ document.getElementById("form-devis").addEventListener("submit", function (e) {
   const formData = new FormData(this);
   const data = Object.fromEntries(formData.entries());
 
-  fetch("http://127.0.0.1:5000/api/devis", {
+  fetch("https://test-technique-axa-api.onrender.com/api/devis", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
