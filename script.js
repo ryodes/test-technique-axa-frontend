@@ -29,7 +29,9 @@ async function afficherTableau() {
       <td>${opp.nom_client}</td>
       <td>${opp.cout_ouvrage}</td>
       <td>
-      📄 <span class="icon-pdf">PDF</span> | 📝 <span class="icon-word">Word</span>
+        <a href="http://127.0.0.1:5000/api/devis/${opp.id}/pdf" target="_blank">
+          <i class="fa-solid fa-file-pdf"></i> PDF
+        </a> | 📝 <span class="icon-word">Word</span>
       </td>
       `;
 
